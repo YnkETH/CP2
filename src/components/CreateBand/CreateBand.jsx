@@ -25,7 +25,7 @@ IMPORTANTE
 import React, { useState } from 'react'
 import * as actions from "../../redux/actions/index";
 import { useDispatch } from 'react-redux';
-
+import Banda from "../BandAgregate/bandAgregate"
 
 export function validate (inputs) {
       const errors = {};
@@ -52,6 +52,8 @@ const CreateBand = () => {
             tickets: 0,
           });
 
+      const [inputs2, setInputs2] = React.useState([]);    
+
       const [errors, setErrors] = React.useState({
             name: '',
             origin: '',
@@ -73,9 +75,16 @@ const CreateBand = () => {
       )       
       }
 
+      //console.log(inputs)
+      
+      
+
       const createBand = (e) => {
             e.preventDefault();
-            //llamamos la acción
+            //llamamos la acción  
+            setInputs2(
+                  [...inputs2,inputs]                                                             
+            )
             if (!(inputs.name.length > 30 || inputs.origin.length > 30 || inputs.tickets < 0)){          
                   dispatch(actions.createBands(inputs))
                   setInputs({
@@ -85,7 +94,7 @@ const CreateBand = () => {
                         tickets: 0,
                   })
             }     
-      }        
+      } 
    return (
       <div>
             <form onSubmit={createBand}>
@@ -119,10 +128,12 @@ const CreateBand = () => {
                   onChange={handleChange}/>
                    {errors.tickets? <p>{errors.tickets}</p>:""}
 
-            <button type='submit'>Create Band</button>
-
+            <button type='submit' >Create Band</button>
                         
       </form>
+
+             <Banda addBand={inputs2}>                  
+            </Banda>
       </div>
    )
 };
