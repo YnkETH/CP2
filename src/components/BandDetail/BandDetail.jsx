@@ -22,16 +22,17 @@ import React from 'react';
 import * as actions from "../../redux/actions/index";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const BandDetail = (props) => {
       
-      let paramId = props.match.params.id;
- 
+const  bandId  = useParams().id
+
       const dispatch = useDispatch();
-      const bands = useSelector(state => state.bands.find(band => band.id === paramId));
+      const bands = useSelector(state => state.bandDetail)
      
       React.useEffect(() => {
-        dispatch(actions.getBandDetail(props.match.params.id))    
+        dispatch(actions.getBandDetail(bandId))   
          }, [dispatch])
 
          

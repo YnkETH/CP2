@@ -62,6 +62,6 @@ export const createBands = (payload) => {
 export const deleteBands = (id) => {
     return{
         type: DELETE_BANDS,
-        payload:id        
+        payload: id        
     }
 };
