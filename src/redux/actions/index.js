@@ -13,8 +13,7 @@ export const getAllBands = () => (dispatch) => {
         .then(data => dispatch({
             type: GET_ALL_BANDS,
             payload: data
-        }))
-    
+        }))   
 };
 
 // 🟢 getBandDetail:

@@ -45,8 +45,7 @@ export class Home extends Component {
                   id={c.id}
                   name={c.name}
                   image={c.image}
-                  functionDate={c.functionDate}>
-                     
+                  functionDate={c.functionDate}>                   
                   </BandCard>
                ))}
             </ul>

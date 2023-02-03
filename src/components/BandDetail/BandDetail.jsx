@@ -18,7 +18,7 @@ IMPORTANTE
       -'React.useState' - 'React.useEffect';
 */
 
-import React from 'react';
+import React, { useState } from 'react';
 import * as actions from "../../redux/actions/index";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -28,21 +28,30 @@ const BandDetail = (props) => {
       
 const  bandId  = useParams().id
 
+      
+
       const dispatch = useDispatch();
       const bands = useSelector(state => state.bandDetail)
+   
+      let arrayBand  = []
+      for (var i in bands.members) {
+            arrayBand = bands.members
+      }
      
+      
       React.useEffect(() => {
         dispatch(actions.getBandDetail(bandId))   
          }, [dispatch])
-
-         
+            
+        
+           
    return <div>
        <h1>{bands.name}</h1>
       <img src={bands?.image} alt={bands.name}></img>
       <h5>Entradas disponibles: {bands?.tickets}</h5>
       <h5>Fecha del evento: {bands?.functionDate}</h5>
       <h5>Origen de la banda: {bands?.origin}</h5>
-      <h5>Integrantes: {bands?.members.join(" ")} </h5>
+     <h5>Integrantes: {arrayBand.join(" ")} </h5>
       <h3>{bands?.description}</h3>
    </div>;
 };
